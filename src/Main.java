@@ -9,16 +9,14 @@ public class Main {
 
     //Converts decimal number to hex
     public static String toHex(int decimal){
-        int rem;
-        String hex = "";
-        char hexChars[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
-
-        while(decimal > 0) {
-            rem = decimal % 16;
-            hex = hexChars[rem] + hex;
-            decimal = decimal/16;
+        if (decimal < 0) {
+            return "-" + toHex(-decimal);
         }
-        return hex;
+        String hexChars = "0123456789ABCDEF";
+        if (decimal < 16) {
+            return hexChars.charAt(decimal % 16)
+        }
+        return toHex(decimal / 16) + hexChars.charAt(decimal % 16);
     }
 
 
